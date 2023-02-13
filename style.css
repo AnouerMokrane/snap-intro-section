@@ -29,6 +29,7 @@ img {
 
 body {
   font-family: "Epilogue", sans-serif;
+  overflow-x: hidden;
 }
 
 .landing {
@@ -42,18 +43,39 @@ header {
   padding: 1rem;
 }
 
-nav {
-  display: none;
-  position: relative;
-  transition: 1s;
+.logo img {
+  display: block;
 }
 
+.toggle {
+  cursor: pointer;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 60%;
+  height: 100%;
+  padding: 5rem 1rem;
+  transition: 0.5s;
+}
+
+nav.active {
+  right: 0;
+  background-color: var(--Almost-white);
+  box-shadow: 10px 0 28px 2px black;
+}
 nav .close-icon {
-  display: none;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
 
 nav .links > li {
-  position: relative;
+  margin-bottom: 1rem;
 }
 nav .links > li > a {
   font-size: 0.8rem;
@@ -68,11 +90,14 @@ nav .links > li > a img {
   margin-left: 4px;
 }
 
-nav .links > li .drop-menu {
+nav .drop-menu {
   margin-top: 1rem;
   margin-left: 1.5rem;
+  display: none;
+  position: initial;
 }
-nav .links > li .drop-menu a {
+
+nav .drop-menu a {
   display: flex;
   align-items: center;
   font-size: 0.7rem;
@@ -80,20 +105,25 @@ nav .links > li .drop-menu a {
   line-height: 1.5;
 }
 
-nav .links > li .drop-menu li:not(:last-child) {
+nav .drop-menu li:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
-nav .links > li .drop-menu a img {
+nav .drop-menu a img {
   display: block;
   width: 15px;
   margin-right: 0.5rem;
+  margin-top: -5px;
 }
 
 nav .btns {
   margin: 0 1rem;
+  margin-left: 0;
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 nav .btns a {
@@ -109,52 +139,12 @@ nav .btns a:last-child {
 
 nav .btns a:last-child:hover {
   border-color: var(--Almost-black);
-}
-
-nav .btns a:hover {
   color: var(--Almost-black);
 }
 
-nav.active {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 60%;
-  height: 100%;
-  background-color: var(--Almost-white);
-  padding: 5rem 1rem;
-  box-shadow: 10px 0 28px 2px black;
-}
-
-nav.active .close-icon {
-  display: block;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-}
-
-nav.active > .links > li {
-  margin-bottom: 1rem;
-}
-
-nav.active > .links > li .drop-menu {
-  display: none;
-  position: initial;
-  margin-top: 1rem;
-}
-
-nav.active .links > li > a:first-child:focus ~ .drop-menu,
+nav.active .links > li > a:first-child:hover ~ .drop-menu,
 nav.active .links > li > a:first-child:focus ~ .drop-menu {
   display: block;
-}
-
-nav.active .btns {
-  flex-direction: column;
-  text-align: center;
-  gap: 1rem;
-  width: 100%;
-  margin-left: 0;
 }
 
 .hero {
@@ -225,33 +215,48 @@ nav.active .btns {
     display: none;
   }
   header {
-    align-items: center;
+    padding: 0;
+  }
+  nav .close-icon {
+    display: none;
   }
   nav {
+    padding: 0;
+    position: initial;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 90%;
   }
   nav .links {
     display: flex;
+    align-items: center;
     flex: 1;
     gap: 2.5rem;
   }
+  nav .links > li {
+    position: relative;
+    margin: 0;
+  }
   nav .links > li .drop-menu {
+    display: block;
     min-width: 120px;
     background-color: var(--Almost-white);
     box-shadow: 0 5px 20px -8px black;
     position: absolute;
-    top: -300px;
+    top: -250px;
     left: -30px;
     padding: 1rem;
     border-radius: 0.5rem;
     transition: 0.4s;
   }
-
-  nav .links > li > a:first-child:focus ~ .drop-menu,
   nav .links > li > a:first-child:focus ~ .drop-menu {
-    top: 20px;
+    top: 10px;
+  }
+  nav .btns {
+    flex-direction: row;
+    width: 160px;
+    margin-right: 2rem;
   }
   .hero {
     flex-direction: row;
